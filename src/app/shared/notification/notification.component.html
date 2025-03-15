@@ -1,0 +1,5 @@
+<div *ngIf="notificationService.notification$ | async as notification" 
+     class="notification"
+     [ngStyle]="{ 'background-color': notification.backgroundColor }">
+  {{ notification.message }}
+</div>
