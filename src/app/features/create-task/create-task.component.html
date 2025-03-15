@@ -1,0 +1,17 @@
+<div class="modal">
+    <div class="modal-content">
+      <h2>Crear Tarea</h2>
+      <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
+        <label for="name">Nombre</label>
+        <input id="name" formControlName="name" required />
+        <div *ngIf="name.invalid && name.touched">Nombre es requerido.</div>
+  
+        <label for="description">Descripción</label>
+        <textarea id="description" formControlName="description" required></textarea>
+        <div *ngIf="description.invalid && description.touched">Descripción es requerida.</div>
+  
+        <button type="button" (click)="closeModal.emit()">Cancelar</button>
+        <button type="submit" [disabled]="taskForm.invalid">Crear</button>
+      </form>
+    </div>
+  </div>

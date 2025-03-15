@@ -1,0 +1,38 @@
+<header>
+  <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#000000" viewBox="0 0 256 256"><path d="M243.28,68.24l-24-23.56a16,16,0,0,0-22.59,0L104,136.23l-36.69-35.6a16,16,0,0,0-22.58.05l-24,24a16,16,0,0,0,0,22.61l71.62,72a16,16,0,0,0,22.63,0L243.33,90.91A16,16,0,0,0,243.28,68.24ZM103.62,208,32,136l24-24a.6.6,0,0,1,.08.08l42.35,41.09a8,8,0,0,0,11.19,0L208.06,56,232,79.6Z"></path></svg>
+      <h1 class="title">Tareas diarias</h1>      
+  </div>
+</header>
+
+<main>
+  <div class="actions">
+
+    <div class="filter-container">
+      <button 
+        [class.active]="filterStatus === 'all'" 
+        (click)="setFilter('all')">Todos
+      </button>
+      <button 
+        [class.active]="filterStatus === 'completed'" 
+        (click)="setFilter('completed')">Completados
+      </button>
+      <button 
+        [class.active]="filterStatus === 'pending'" 
+        (click)="setFilter('pending')">Pendientes
+      </button>
+    </div>
+
+    <button class="new-task" (click)="openTaskModal()"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000000" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path></svg> Tarea</button>
+  </div>  
+
+  <div class="card-wrapper fade-in">
+      @for (task of filteredTasks; track task.id) {
+          <app-task [task]="task" (deleteTask)="deleteTask($event)" (updateTask)="updateTask($event)"/>
+      }
+  </div>
+</main>
+
+@if (showTaskModal) {
+  <app-create-task (closeModal)="showTaskModal = false" (taskCreated)="handleTaskCreated($event)"></app-create-task>
+}
