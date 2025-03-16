@@ -1,5 +1,10 @@
 <script>
-    var path = window.location.pathname;
-    window.location.replace('/Task-list/' + path);
+    var redirectPath = window.location.pathname;
+    
+    if (!redirectPath.startsWith('/Task-list')) {
+      window.location.replace('/Task-list' + redirectPath);
+    } else {
+      window.location.replace('/Task-list');
+    }
   </script>
   
